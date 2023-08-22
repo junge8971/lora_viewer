@@ -1,0 +1,56 @@
+{% extends 'main_template.html' %}
+
+{% block title %}
+    sensor
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        {% for item in sensors %}
+
+        <h2>Сенсор: {{ item.sensor_number }}</h2>
+
+        {% if item.temperature %}
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="{{item.sensor_number}}_temperature" id="{{item.sensor_number}}_temperature" name="{{item.sensor_number}}_temperature">
+            <label class="form-check-label" for="{{item.sensor_number}}_temperature">
+              Температура
+            </label>
+          </div>
+        {% endif %}
+
+        {% if item.atmosphere_pressure %}
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="{{item.sensor_number}}_atmosphere_pressure" id="{{item.sensor_number}}_atmosphere_pressure" name="{{item.sensor_number}}_atmosphere_pressure">
+            <label class="form-check-label" for="{{item.sensor_number}}_atmosphere_pressure">
+              Атмосферное давление
+            </label>
+          </div>
+        {% endif %}
+
+        {% if item.air_humidity %}
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="{{item.sensor_number}}_air_humidity" id="{{item.sensor_number}}_air_humidity" name="{{item.sensor_number}}_air_humidity">
+            <label class="form-check-label" for="{{item.sensor_number}}_air_humidity">
+              Влажность воздуха
+            </label>
+          </div>
+        {% endif %}
+
+        {% if item.watering %}
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="{{item.sensor_number}}_watering" id="{{item.sensor_number}}_watering" name="{{item.sensor_number}}_watering">
+            <label class="form-check-label" for="{{item.sensor_number}}_watering">
+              Полив
+            </label>
+          </div>
+        {% endif %}
+
+
+          <hr>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

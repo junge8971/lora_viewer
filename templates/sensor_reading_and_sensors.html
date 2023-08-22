@@ -1,0 +1,62 @@
+{% extends 'main_template.html' %}
+
+{% block title %}
+sensor_reading_and_sensors
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h2>Sensors</h2>
+    <div class="table-responsive">
+        <table class="table table-primary">
+            <thead>
+                <tr>
+                    <th scope="col">Номер сенсора</th>
+                    <th scope="col">Температура</th>
+                    <th scope="col">Атмосферное давление</th>
+                    <th scope="col">Влажность воздуха</th>
+                    <th scope="col">Полив</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in sensors %}
+                <tr class="">
+                    <td>{{ item.sensor_number }}</td>
+                    <td>{{ item.temperature }}</td>
+                    <td>{{ item.atmosphere_pressure }}</td>
+                    <td>{{ item.air_humidity }}</td>
+                    <td>{{ item.watering }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Sensors readings</h2>
+    <div class="table-responsive">
+        <table class="table table-primary">
+            <thead>
+                <tr>
+                    <th scope="col">Номер сенсора</th>
+                    <th scope="col">Дата и время</th>
+                    <th scope="col">Координаты</th>
+                    <th scope="col">Показания сенсора</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in sensors_reading %}
+                <tr class="">
+                    <td>{{ item.sensor_number }}</td>
+                    <td>{{ item.date_and_time_utc }}</td>
+                    <td>{{ item.coordinates }}</td>
+                    <td>{{ item.sensor_readings }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

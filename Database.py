@@ -68,13 +68,14 @@ class Database:
         """
        Добавляет в таблицу показаний сенсоров новую запись (которая №1 на предорставленной схеме)\n
         :param sensor_number: номер сенсора (обязательное значение)
-        :param date_and_time_UTC: дата и время в формате: {year}-{month}-{day} {hour}:{minute}:{sec} Europe/Moscow (обязательное значение)
+        :param date_and_time_UTC: дата и время в формате: '{year}-{month}-{day} {hour}:{minute}:{sec} Europe/Moscow' (обязательное значение)
         :param coordinates: координаты (обязательное значение)
         :param sensor_readings: показания сенсоров, по дефолту null
         """
         text = """
-                INSERT INTO table_of_sensors VALUES (%s, %s, %s, %s)"""
+                INSERT INTO table_of_sensor_readings VALUES (%s, %s, %s, %s)"""
         params = [sensor_number, date_and_time_UTC, coordinates, sensor_readings]
+        self.create_a_table_of_sensor_readings()
         return self.request_to_bd(text, params)
 
     def get_all_sensor_reading(self) -> list[dict, ...]:
@@ -124,6 +125,7 @@ class Database:
         text = """
                 INSERT INTO table_of_sensors VALUES (%s, %s, %s, %s, %s)"""
         params = [sensor_number, temperature, atmosphere_pressure, air_humidity, watering]
+        self.create_a_table_of_sensors()
         return self.request_to_bd(text, params)
 
     def get_all_sensors(self) -> list[dict, ...]:
